@@ -1,5 +1,6 @@
 
 import express from 'express';
+import cors from 'cors';
 
 
 class Server {
@@ -19,7 +20,9 @@ class Server {
     middlewares() {
         //Public Folder
         this.app.use(express.static('public'));
-    }
+
+        //CORS
+        this.app.use(cors());    }
 
 
     routes() {
@@ -31,7 +34,7 @@ class Server {
         });
 
         this.app.put('/api', (req, res) => {
-            res.json({
+            res.status(500).json({
                 ok: true,
                 msg: 'put API'
             });
